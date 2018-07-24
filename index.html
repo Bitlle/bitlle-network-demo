@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en-EN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <title>BITLLE NETWORK PROTOCOL (DEMO)</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link href="css/styles.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="content">
+    <div class="page">
+        <header class="header">
+            <div class="container">
+                <div class="cellsBlock">
+                    <div class="cell">
+                        <menu class="menu">
+                            <ul class="menu__list header__menu">
+                                <li><a href="https://bitlle.com" target="_blank">Bitlle Network</a></li>
+                                <li>
+                                    <a href="https://docs.google.com/document/d/1-BYDEsk5LwUfE3Q2vY86cdlzL0dWL1cXmKFSWk-_Ebo/edit"
+                                       target="_blank">WhitePaper</a></li>
+                            </ul>
+                        </menu>
+                    </div>
+                    <div class="cell">
+                        <menu class="menu menu__right">
+                            <ul class="menu__list header__menu">
+                                <li><a href="https://t.me/bitlle_eng" target="_blank"><img
+                                        src="img/logo-telegram.svg"
+                                        class="header__community">
+                                    Community</a></li>
+                            </ul>
+                        </menu>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="container">
+            <div class="pagetitle">
+                <div class="pagetitle__main">BITLLE NETWORK PROTOCOL (DEMO)</div>
+                <div class="pagetitle__text">
+                    Demonstration of ERC20 Loyalty Token (LT) transfer without using ETH.
+                    Sender pays the commission in LT to the test aggregator Bitlle Network, which, using its
+                    proprietary
+                    ETH
+                    to pay for gas, publishes the transaction on the Ethereum network. In this Demo, the test
+                    aggregator
+                    spends 55,000 to 83,000 for gas to publish the transaction. With further optimization and batch
+                    transaction publication functions, the cost may be decreased by 30-50%.
+                </div>
+            </div>
+        </div>
+
+        <div class="non-authorized">
+
+            <div class="container">
+                <!--<div class="non-authorized__main">Please auth</div>-->
+                <div class="cellsBlock non-authorized__items">
+                    <div class="non-authorized__item cell">
+                        <div class="non-authorized__title title">Log In to use Demo</div>
+                        <ul class="non-authorized__types">
+                            <li><label><input type="radio" name="type" value="1" class="tab__btn tab__active"
+                                              data-tab="tabMetamask" checked/> Metamask</label></li>
+                            <li><label><input type="radio" name="type" value="1" class="tab__btn"
+                                              data-tab="tabPrivateKey"/>
+                                Private Key</label></li>
+                            <li><label><input type="radio" name="type" value="1" class="tab__btn"
+                                              data-tab="tabPassword"/>
+                                Password</label></li>
+                        </ul>
+
+                    </div>
+                    <div class="non-authorized__item cell">
+                        <div class="tab__content tab__active" id="tabMetamask">
+                            <div class="non-authorized__title title">Metamask</div>
+
+                            <div class="non-authorized__info">
+                                <p>MetaMask is a browser extension, которое позволяет получить легкий и безопасный
+                                    доступ к
+                                    вашему кошельку. Если у вас не установлен MetaMask, то вы can install the
+                                    MetaMask
+                                    add-on in
+                                    Chrome, Firefox, Opera, and the new Brave browser.</p>
+                                <p>
+                                    Download <a href="https://metamask.io/">MetaMask</a></p>
+                            </div>
+                            <button class="btn btn__default" id="authWithMetamask">Connect to Metamask</button>
+                        </div>
+                        <div class="tab__content" id="tabPrivateKey">
+                            <div class="non-authorized__title title">Private Key</div>
+                            <div class="non-authorized__info">
+                                <p>Пожалуйста, обратите внимение, что ввод Private Key на сайте не является
+                                    безопасным.
+                                    В
+                                    целях
+                                    безопасности используйте тестовый кошелек, на котором нет текущих токенов. Для
+                                    большей
+                                    безопасности мы рекомендуем использовать для авториазации MetaMask.</p>
+                            </div>
+                            <form>
+                                <div class="form-group">
+                                    <textarea class="form-control" id="inputPrivateKey"
+                                              placeholder="Private Key"></textarea>
+                                </div>
+                                <div class="non-authorized__submit">
+                                    <button class="btn btn__default" id="authWithPrivateKey">Auth with Private Key
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab__content" id="tabPassword">
+                            <div class="non-authorized__title title">Password</div>
+                            <div class="non-authorized__info">
+                                <p>Пожалуйста, обратите внимение, что сгенериванный кошелек может быть использован
+                                    только на
+                                    данном демо сайте. Для большей
+                                    безопасности мы рекомендуем использовать для авториазации MetaMask.</p>
+                            </div>
+                            <form>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" id="inputPassword"
+                                           placeholder="Password"
+                                           value=""/>
+                                </div>
+                                <div class="non-authorized__submit">
+                                    <button class="btn btn__default" id="authWithPassword">Auth with Password
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="authorized">
+
+            <div class="ethblock">
+                <div class="container">
+                    <div class="cellsBlock">
+                        <div class="cell ethblock__address">
+                            <div class="ethblock__label">Ethereum address</div>
+                            <div class="ethblock__value" id="ethAddress"></div>
+                            (<a id="logout" href="#">logout</a>)
+                        </div>
+                        <div class="cell">
+                            <div class="ethblock__label">Balance</div>
+                            <div class="ethblock__value">
+                                <span class="ethblock__balance" id="eth-balance"></span><span
+                                    class="ethblock__balance"
+                                    id="lt-balance"></span>
+                            </div>
+                        </div>
+                        <div class="cell ethblock__right">
+                            <button class="btn btn__default" id="depositBtn">Get <span
+                                    class="text__big">100 LT</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="transfer">
+                <div class="container">
+                    <div class="title">Transfer LT</div>
+                    <form class="transfer__form" id="sendLTForm">
+                        <div class="cellsBlock">
+                            <div class="cell">
+                                <div class="form-group">
+                                    <label for="inputAddress">Recipient address</label>
+                                    <input class="form-control" id="inputAddress"
+                                           placeholder="Recipient address"
+                                           value="" maxlength="42">
+                                </div>
+                            </div>
+                            <div class="cell">
+                                <div class="form-group">
+                                    <label for="inputAmount">Amount</label>
+                                    <input class="form-control" id="inputAmount" placeholder="Amount" value=""/>
+                                    <span class="transfer__ticker">LT</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cellsBlock transfer__line2">
+                            <div class="cell">
+                                <label>Fee*:</label> <span class="transfer__fee" id="labelFee">0.00 LT</span>
+                                <span class="transfer__small">*for demo purposes the fixed commission rate has been set at <span
+                                        id="feePercent"></span></span>
+                                <input type="hidden" id="inputFee" value="0">
+                            </div>
+                            <div class="cell transfer__right">
+                                <button type="submit" class="btn btn__default btn__default2" id="transferBtn">
+                                    Transfer
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="transactions">
+                <div class="container">
+                    <div class="cellsBlock">
+                        <div class="cell">
+                            <div class="title">Transactions</div>
+                        </div>
+                        <div class="cell transactions__right" id="transactionsPreloader"><i class="preloader"></i>
+                        </div>
+                    </div>
+                    <div class="transactions__table-wrapper">
+                        <table class="transactions__table table transactions__show5">
+                            <thead>
+                            <tr>
+                                <th>Date/Time</th>
+                                <th>Amount</th>
+                                <th>Fee</th>
+                                <th>Type</th>
+                                <th>TX Hash</th>
+                            </tr>
+                            </thead>
+                            <tbody id="transactions"></tbody>
+                        </table>
+                    </div>
+                    <div class="transactions__footer">
+                        <button class="btn btn__transparent" id="showAllTransactions">Show All</button>
+                    </div>
+                    <div class="transactions__notfound"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    <div class="container">
+        <div class="cellsBlock">
+            <div class="cell footer__logo">
+                BITLLE
+                <div class="footer__copy-mobile">
+                    © 2018 bitlle.network
+                </div>
+            </div>
+            <div class="cell footer__copy">
+                © 2018 bitlle.network
+            </div>
+            <div class="cell">
+                <menu class="menu menu__right">
+                    <ul class="menu__list">
+                        <li><a class="menu__iconround" href="https://www.facebook.com/bitllecom/"
+                               target="_blank"><img src="img/logo-facebook.svg"
+                                                    alt="Bitlle Facebook"
+                                                    title="Bitlle Facebook"></a></li>
+                        <li><a class="menu__iconround" href="https://t.me/bitlle_eng" target="_blank"><img
+                                src="img/logo-telegram.svg"
+                                alt="Bitlle Telegram"
+                                title="Bitlle Telegram"></a></li>
+                        <li><a class="menu__iconround" href="https://github.com/Bitlle" target="_blank"><img
+                                src="img/logo-github.svg" alt="Bitlle Github"
+                                title="Bitlle Github"></a></li>
+                        <li><a class="menu__iconround" href="https://golos.io/@bitlle" target="_blank"><img
+                                src="img/logo-golos.svg" alt="Bitlle Golos"
+                                title="Bitlle Golos"></a></li>
+                    </ul>
+                </menu>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="js/bundle.js"></script>
+<script src="js/scripts.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-25730247-6"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'UA-25730247-6');
+</script>
+
+</body>
+</html>
